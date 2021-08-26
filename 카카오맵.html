@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Kakao 지도 가져와서 표시하기</title>
+		
+</head>
+<body>
+
+	<div id="map" style="width:1500px;height:1500px;"></div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	4cd613cab82ab05a02b8877af7da8406"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng( 37.601602423410384, 126.95440827323118),
+			level: 5
+		};
+
+		var map = new kakao.maps.Map(container, options);
+
+
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng( 37.601602423410384, 126.95440827323118), // 지도 중심좌표
+        level: 5
+
+    };  
+	
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// 마커 표시 위치
+var positions = [
+    {
+        title: 'jihun_home', 
+        latlng: new kakao.maps.LatLng(37.367591730652784, 127.11131009814343)
+    },
+    {
+        title: '사범대', 
+        latlng: new kakao.maps.LatLng(37.60241567721105, 126.95469371920466)
+    },
+    {
+        title: '대학본부', 
+        latlng: new kakao.maps.LatLng(37.602519977741356, 126.95416429870417)
+    },
+    
+];
+
+// 마커 이미지의 이미지 주소입니다
+var imageSrc = "https://icon-icons.com/downloadimage.php?id=34392&root=317/PNG/512/&file=map-marker-icon_34392.png"; 
+    
+for (var i = 0; i < positions.length; i ++) {
+    
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new kakao.maps.Size(30, 35); 
+    
+    // 마커 이미지를 생성합니다    
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+    
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng, // 마커를 표시할 위치
+        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage // 마커 이미지 
+    });
+}
+
+
+var markerPosition  = new kakao.maps.LatLng(37.601602423410384, 126.95440827323118); 
+
+
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
+</script>
+
+</body>
+</html>
